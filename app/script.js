@@ -6,11 +6,17 @@ $(document).ready(function () {
   $("input").focusout(function () {
     $(this).css("background-color", "#fff");
   });
+  $("#password").keyup(function () {
+    let pwdRequirement = /^(?=.*{8,16})+(?=.*[!#$^])+[a-zA-Z0-9]$/;
+    // let pwdSpecial = /[!#$^]+/;
+    const pwd = $(this).val();
+    console.log(pwd);
+    let pwdValid = pwdRequirement.test(pwd);
+    if (!pwdValid) {
+      $("#pwd-restriction").text("aleast 8 character");
+    }
+  });
   $("#submitBtn").click(function (e) {
-    // $("#password").keyup(function () {
-    //   let pwdSpecial = /^.{10,16}$/;
-    //   let pwdLength = /[!#$^]+/;
-    // });
     e.preventDefault();
 
     const mail = $("#mailId").val();
