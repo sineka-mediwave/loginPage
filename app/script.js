@@ -13,14 +13,18 @@ $(document).ready(function () {
     if (!mail || !password) {
       $("#submitBtn").css("background-color", "red");
     } else if (password) {
-      let pwdLength = /^(?=.*[!#$^])(?=.*[a-zA-Z]).{8,}$/;
-      let pwdValid = pwdLength.test(password);
-      e.preventDefault();
+      // let passRequirements = /^(?=.*[!#$^])(?=.*[a-zA-Z]).{8,}$/;
+      // let pwdValid = passRequirements.test(password);
 
-      if (!pwdValid) {
-        $("#pwd-restriction").text(
-          "atleast 8 characters, must include one of !#$^"
-        );
+      let pwdLength = /.{8,}$/;
+      let pwdSpecial = /^(?=.*[!#$^])/;
+      let validchar = pwdSpecial.test(password);
+      let validLength = pwdLength.test(password);
+      e.preventDefault();
+      if (!validchar) {
+        $("#pwd-restriction").text("must include one of these !#$^ charaters");
+      } else if (!validLength) {
+        $("#pwd-restriction").text("atleast 8 characters");
       } else {
         $("#submitBtn").css("background-color", "#F2D8D8");
         $("#pwd-restriction").text("");

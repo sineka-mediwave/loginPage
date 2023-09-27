@@ -22,3 +22,21 @@ A regular expression (regex) is a sequence of characters that define a search pa
 - \+ for at atleast one or more times. ab+c will give abc, abbc
 - {..} defers min and max times.
 - .\* will tell the computer that any character can be used any number of times.
+
+```
+with specific correction
+if (!validchar) {
+        $("#pwd-restriction").text("must include one of these !#$^ charaters");
+      } else if (!validLength) {
+        $("#pwd-restriction").text("atleast 8 characters");
+      } else {
+        $("#submitBtn").css("background-color", "#F2D8D8");
+        $("#pwd-restriction").text("");
+        const people = {
+          new: new Date().getTime(),
+          email: mail,
+          password: password,
+        };
+        console.log(people);
+      }
+```
