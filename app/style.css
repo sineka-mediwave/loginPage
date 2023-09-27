@@ -54,6 +54,9 @@ input:focus {
     outline: none;
 }
 
+#pwd-restriction{
+    color: #F2D8D8;
+}
 @media (max-width: 768px) {
     .flex-box{
       flex-direction: column;

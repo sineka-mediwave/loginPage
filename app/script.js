@@ -6,27 +6,31 @@ $(document).ready(function () {
   $("input").focusout(function () {
     $(this).css("background-color", "#fff");
   });
-  $("#password").keyup(function () {
-    let pwdRequirement = /^(?=.*{8,16})+(?=.*[!#$^])+[a-zA-Z0-9]$/;
-    // let pwdSpecial = /[!#$^]+/;
-    const pwd = $(this).val();
-    console.log(pwd);
-    let pwdValid = pwdRequirement.test(pwd);
-    if (!pwdValid) {
-      $("#pwd-restriction").text("aleast 8 character");
-    }
-  });
-  $("#submitBtn").click(function (e) {
-    e.preventDefault();
 
+  $("#submitBtn").click(function (e) {
     const mail = $("#mailId").val();
     const password = $("#password").val();
-    const people = {
-      new: new Date().getTime(),
-      email: mail,
-      password: password,
-    };
-    // peoples.push(people);
-    console.log(people);
+    if (!mail || !password) {
+      $("#submitBtn").css("background-color", "red");
+    } else if (password) {
+      let pwdLength = /^(?=.*[!#$^])(?=.*[a-zA-Z]).{8,}$/;
+      let pwdValid = pwdLength.test(password);
+      e.preventDefault();
+
+      if (!pwdValid) {
+        $("#pwd-restriction").text(
+          "atleast 8 characters, must include one of !#$^"
+        );
+      } else {
+        $("#submitBtn").css("background-color", "#F2D8D8");
+        $("#pwd-restriction").text("");
+        const people = {
+          new: new Date().getTime(),
+          email: mail,
+          password: password,
+        };
+        console.log(people);
+      }
+    }
   });
 });
